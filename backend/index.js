@@ -1,9 +1,10 @@
-import express from 'express';
+import express from "express";
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import userRoutes from './routes/user.route.js';
 import authRoutes from './routes/auth.route.js';
 import bodyParser from 'body-parser';
+
 
 dotenv.config();
 
@@ -24,6 +25,11 @@ app.listen(3000, () => {
 
 app.use("/backend/user", userRoutes);
 app.use("/backend/auth", authRoutes);
+
+app.post("/backend/auth/signin", (req, res, next) => {
+    console.log('Signin route hit');
+    next();
+});
 
 app.use((err, req, res, next) => {
     const statusCode = err.statusCode || 500;
