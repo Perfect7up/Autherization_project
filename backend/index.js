@@ -1,8 +1,8 @@
 import express from "express";
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-import userRoutes from './routes/user.route.js';
-import authRoutes from './routes/auth.route.js';
+import authRoutes from "./routes/auth.route.js";
+import userRoutes from "./routes/user.route.js";
 import bodyParser from 'body-parser';
 
 
@@ -25,6 +25,10 @@ app.listen(3000, () => {
 
 app.use("/backend/user", userRoutes);
 app.use("/backend/auth", authRoutes);
+
+app.get("/backend/auth/signin", (req, res) => {
+    res.send('Signin GET route hit');
+});
 
 app.post("/backend/auth/signin", (req, res, next) => {
     console.log('Signin route hit');
